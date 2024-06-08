@@ -1,10 +1,9 @@
-const choices = ["rock", "paper", "scissors"];
 let playerScore = 0;
 let computerScore = 0;
 
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
-    return choices[randomNumber];
+    return randomNumber;
 }
 
 function getHumanChoice() {
@@ -22,6 +21,9 @@ function playRound(computerChoice, humanChoice) {
     // 1 = paper
     // 2 = scissors
 
+    computerChoice = getComputerChoice();
+    console.log(`Computer Choice = ${computerChoice}`);
+    humanChoice = getHumanChoice();
 
     if (humanChoice === computerChoice) {
         console.log("Its a tie!");
@@ -65,9 +67,22 @@ function playRound(computerChoice, humanChoice) {
                 console.log("You chose scissors, comupter chose paper. You win");
                 playerScore++;
                 return;
-            }
-        
-        
+            }     
+    }
+}
+
+function playGame() {
+    for (i = 0; i < 5; i++) {
+        playRound();
     }
     
+    if (playerScore < computerScore) {
+        console.log("The computer won");
+    } else if (playerScore > computerScore) {
+        console.log("Player won");
+    } else {
+        console.log("Tie!")
+    }
 }
+
+playGame();
